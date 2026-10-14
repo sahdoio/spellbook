@@ -1,6 +1,6 @@
-# Spellbook
-
-> A spellbook of powerful skills, plugins, and workflows for AI coding agents.
+<p align="center">
+  <img src="assets/logo.svg" alt="Spellbook: a spellbook of powerful skills, plugins, and workflows for AI coding agents" width="640">
+</p>
 
 Spellbook is a personal [Claude Code plugin marketplace](https://code.claude.com/docs/en/plugins/create-marketplace). Install it once and its spells (skills) work in every project and session, versioned and distributed from this repository instead of being copied into each one.
 
@@ -40,6 +40,7 @@ spellbook/
 │       │       ├── SKILL.md
 │       │       └── assets/report-template.html
 │       └── README.md
+├── assets/logo.svg                     # README logo
 ├── scripts/validate.sh                 # Local and CI validation
 └── .github/workflows/validate.yml      # CI
 ```

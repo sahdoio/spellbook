@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 220" width="820" height="220" role="img" aria-labelledby="title desc">
+  <title id="title">Spellbook</title>
+  <desc id="desc">An open book with a glowing spark above it, next to the word Spellbook.</desc>
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c3aed"/>
+      <stop offset="0.55" stop-color="#4f46e5"/>
+      <stop offset="1" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fde68a" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#fde68a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="page" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e0e7ff"/>
+    </linearGradient>
+    <linearGradient id="word" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" class="w1"/>
+      <stop offset="1" class="w2"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .w1 { stop-color: #5b21b6; } .w2 { stop-color: #4338ca; }
+    .tagline { fill: #4b5563; }
+    .prompt { fill: #6d28d9; }
+    @media (prefers-color-scheme: dark) {
+      .w1 { stop-color: #c4b5fd; } .w2 { stop-color: #a5b4fc; }
+      .tagline { fill: #a1a1aa; }
+      .prompt { fill: #c4b5fd; }
+    }
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+  </style>
+
+  <!-- Icon tile -->
+  <rect x="20" y="20" width="180" height="180" rx="44" fill="url(#tile)"/>
+
+  <!-- Glow and spark -->
+  <circle cx="110" cy="70" r="46" fill="url(#glow)"/>
+  <path d="M110 40 C112.5 58 116 63 134 66 C116 69 112.5 74 110 92 C107.5 74 104 69 86 66 C104 63 107.5 58 110 40 Z" fill="#fde68a"/>
+  <path d="M146 44 C147 50 148.5 51.5 154 52.5 C148.5 53.5 147 55 146 61 C145 55 143.5 53.5 138 52.5 C143.5 51.5 145 50 146 44 Z" fill="#fef3c7"/>
+  <circle cx="76" cy="50" r="3" fill="#fef3c7"/>
+  <circle cx="68" cy="82" r="2" fill="#fef3c7" opacity="0.8"/>
+
+  <!-- Open book -->
+  <path d="M106 112 Q80 98 50 104 L50 166 Q80 160 106 172 Z" fill="url(#page)"/>
+  <path d="M114 112 Q140 98 170 104 L170 166 Q140 160 114 172 Z" fill="url(#page)"/>
+  <g stroke="#6366f1" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.55">
+    <path d="M62 120 Q80 115 96 121"/>
+    <path d="M62 133 Q80 128 96 134"/>
+    <path d="M62 146 Q78 141 90 146"/>
+    <path d="M124 121 Q140 115 158 120"/>
+    <path d="M124 134 Q140 128 158 133"/>
+    <path d="M130 146 Q142 141 158 146"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="236" y="118" font-size="76" font-weight="800" letter-spacing="-1.5" fill="url(#word)">Spellbook</text>
+  <text x="240" y="158" font-size="21" class="tagline">Skills, plugins &amp; workflows for AI coding agents</text>
+  <text x="240" y="190" font-size="17" class="mono prompt">/spellbook:do-a-code-review</text>
+</svg>
