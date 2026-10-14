@@ -23,7 +23,13 @@ Spellbook is a personal toolkit, but changes still go through the same checks.
    Other optional fields include `argument-hint` and `disable-model-invocation: true` (use it for spells that should run only when you type the command). See the [skills docs](https://code.claude.com/docs/en/skills).
 3. Keep `SKILL.md` as the orchestrator and under about 500 lines. Move long checklists into `references/*.md` next to it, and link them with relative links that tell Claude when to read each one. Put deterministic helpers in `scripts/` and refer to them as `${CLAUDE_PLUGIN_ROOT}/skills/<spell-name>/scripts/...`.
 4. Keep safety rules and approval gates in `SKILL.md` itself, not only in references.
-5. Add the spell to the tables in `README.md` and `plugins/spellbook/README.md`.
+5. Document it in `README.md` (the Spells table, a section under Workflows, and the Stack support and Integrations tables), and add its files to `plugins/spellbook/README.md`.
+
+## Add a stack to the code review
+
+1. Create `plugins/spellbook/skills/do-a-code-review/references/<stack>-review.md` with the checklist, and the static-analysis and test commands. Follow the shape of `backend-review.md`: inspect the project first, and report only new errors.
+2. Add a bullet under "4.2 Stack-specific review" in that skill's `SKILL.md` saying when to read the new file.
+3. Update the Stack support table in `README.md`.
 
 ## Add a separate plugin
 

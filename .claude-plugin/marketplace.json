@@ -9,7 +9,7 @@
     {
       "name": "spellbook",
       "source": "./plugins/spellbook",
-      "description": "Lucas's spells for Claude Code, all under the /spellbook: prefix: do-a-code-review, jira-ticket-workflow, and ticket-test-report.",
+      "description": "Claude Code workflows for Laravel, React, and Vue teams on Jira and GitHub: jira-ticket-workflow, do-a-code-review, and ticket-test-report.",
       "category": "productivity",
       "tags": [
         "code-review",

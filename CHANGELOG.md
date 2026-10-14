@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/).
 
+## [1.0.1] - 2026-10-14
+
+### Changed
+
+- Documentation now describes each spell's workflow, stack support (deep checklists for PHP/Laravel and React/Vue/TypeScript, general review elsewhere), and per-spell integrations.
+- Plugin README is now a file map. Manifest descriptions state the stack focus.
+- README explains how the spells use Jira (tickets, acceptance criteria, test plans, write-back) and Git (worktrees, branches, baselines, traceability), and shows a stack badge row.
+- Logo uses the Laravel-inspired red palette and shows the ticket-to-report flow.
+
 ## [1.0.0] - 2026-10-14
 
 ### Added
