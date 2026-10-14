@@ -2,7 +2,11 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/).
 
-## [1.0.1] - 2026-10-14
+## [1.1.0] - 2026-10-14
+
+### Added
+
+- `do-a-code-review` writes a review document after every review (`./reports/code-review-<PR-or-branch>-<date>.md`). It explains each step performed and gives possible solutions, trade-offs, a recommendation, and a verification method for each finding. Template: `references/review-document.md`.
 
 ### Changed
 

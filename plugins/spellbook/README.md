@@ -18,6 +18,7 @@ How each spell works, which stacks it covers, and which integrations it uses are
 | [`skills/do-a-code-review/references/frontend-review.md`](skills/do-a-code-review/references/frontend-review.md) | React/Vue/TypeScript checklist, and `tsc`/`vue-tsc`, lint, and test guidance |
 | [`skills/do-a-code-review/references/architecture-review.md`](skills/do-a-code-review/references/architecture-review.md) | Stack-agnostic code quality, architecture, and test coverage |
 | [`skills/do-a-code-review/references/output-format.md`](skills/do-a-code-review/references/output-format.md) | Review structure, finding format, and GitHub comment format |
+| [`skills/do-a-code-review/references/review-document.md`](skills/do-a-code-review/references/review-document.md) | Template for the review document written to `./reports/` after each review: every step, plus possible solutions per finding |
 | [`skills/ticket-test-report/SKILL.md`](skills/ticket-test-report/SKILL.md) | Test-plan execution, statuses, traceability, and report generation |
 | [`skills/ticket-test-report/assets/report-template.html`](skills/ticket-test-report/assets/report-template.html) | Self-contained HTML report template with English/Portuguese labels |
 

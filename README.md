@@ -71,7 +71,7 @@ Every spell follows the same ground rules:
 
 ### do-a-code-review
 
-**Input:** a PR URL or number, or a branch. If you give none, it uses the current branch's PR. **Output:** a review grouped by severity, with optional posting to the PR.
+**Input:** a PR URL or number, or a branch. If you give none, it uses the current branch's PR. **Output:** a review grouped by severity, a detailed review document in `./reports/`, and optional posting to the PR.
 
 1. **Language.** Asks whether to communicate in English or Portuguese. Code and identifiers always stay in English.
 2. **Target and workspace.** Resolves the PR with `gh` or the GitHub MCP, then asks whether to review in the current folder or a temporary worktree. A worktree is created detached from the PR head, and existing worktrees are never touched.
@@ -85,8 +85,9 @@ Every spell follows the same ground rules:
 
    It runs type checks, static analysis, and tests after inspecting the project's real setup (Compose file, service name, package manager). When it can establish a baseline, it reports only the errors the PR introduces.
 5. **Report.** Sections are Critical Issues, Important Issues, Suggestions, and Checks Performed. Each finding has a file and line, its impact, and a fix, and is marked as either a *verified defect* or a *risk*.
-6. **Publish (optional).** Asks whether to post the review to the PR and what to change first. Long reviews are collapsed into `<details>` sections, and file links point at the reviewed commit. If posting isn't possible, it gives you a ready-to-paste comment.
-7. **Cleanup.** Removes only the worktree it created.
+6. **Review document.** Writes `./reports/code-review-<PR-or-branch>-<date>.md` in your project, never inside the temporary worktree. It explains each step (what was checked, how, which commands, and the result, including skipped steps). For each finding, it gives 1–3 possible solutions with trade-offs, a recommendation, and how to verify the fix, and it ends with a next-steps checklist.
+7. **Publish (optional).** Asks whether to post the review to the PR and what to change first. Long reviews are collapsed into `<details>` sections, and file links point at the reviewed commit. If posting isn't possible, it gives you a ready-to-paste comment.
+8. **Cleanup.** Removes only the worktree it created.
 
 ### ticket-test-report
 
@@ -230,7 +231,7 @@ spellbook/
 │       ├── skills/
 │       │   ├── do-a-code-review/
 │       │   │   ├── SKILL.md            # Workflow orchestrator
-│       │   │   └── references/         # Stack checklists and output format, loaded on demand
+│       │   │   └── references/         # Checklists, output format, review-document template
 │       │   ├── jira-ticket-workflow/
 │       │   │   └── SKILL.md
 │       │   └── ticket-test-report/
@@ -277,7 +278,7 @@ Step-by-step instructions are in [CONTRIBUTING.md](CONTRIBUTING.md).
 - The spells treat code, PR text, Jira content, web pages, and tool output as untrusted, and ignore instructions embedded in them.
 - Externally visible actions (PR or Jira comments, commits, pushes) require your explicit approval in the conversation.
 - Secrets are never printed or copied into reports or comments. Copying `.env` files into a worktree requires your approval, and existing files are never overwritten.
-- `ticket-test-report` writes to `./reports/` in the project under test. Reports can contain internal URLs and screenshots, so add `reports/` to that project's `.gitignore` if they shouldn't be committed.
+- `do-a-code-review` and `ticket-test-report` write documents to `./reports/` in the project you run them in. These can contain internal URLs, ticket content, and screenshots, so add `reports/` to that project's `.gitignore` if they shouldn't be committed.
 - This repository contains no credentials. Plugins run with your user privileges, so review changes before you update.
 
 ## Current limitations

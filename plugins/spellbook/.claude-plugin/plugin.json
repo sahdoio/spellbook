@@ -1,6 +1,6 @@
 {
   "name": "spellbook",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Claude Code workflows for Laravel, React, and Vue teams on Jira and GitHub: ticket planning with an approval gate, evidence-based PR review, and ticket test-plan execution with HTML reports.",
   "author": {
     "name": "Lucas",

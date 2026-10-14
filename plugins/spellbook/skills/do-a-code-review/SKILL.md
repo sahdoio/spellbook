@@ -118,7 +118,19 @@ Every finding needs: severity, file path, line or location, a clear description,
 
 Present the full review to the user in the chosen language.
 
-## Phase 6: Optional GitHub publication
+## Phase 6: Write the review document
+
+After every review, write a Markdown document that explains each step you performed and the possible solutions for each finding. Read [references/review-document.md](references/review-document.md) and follow its template and rules.
+
+- **Location.** Save it in the user's original working directory, not in a temporary worktree, which Phase 8 removes: `./reports/code-review-<PR-number-or-branch-slug>-<YYYY-MM-DD>.md`. Create `reports/` if needed. If the user named another path, use theirs.
+- **Never overwrite.** If the file exists, add a suffix such as `-2`.
+- **Language.** Write it in the chosen language, with the identifier rules above.
+- **Secrets.** Never put secrets or `.env` contents in the document.
+- **Report back.** Give the user the document's path. If `reports/` isn't in the project's `.gitignore`, mention it once so they can decide whether the document should be committed.
+
+Writing this local file needs no approval, but it must not replace the review shown in Phase 5.
+
+## Phase 7: Optional GitHub publication
 
 Do this only after the review is complete and shown to the user. Ask both questions:
 
@@ -133,7 +145,7 @@ Wait for an **explicit yes**. Apply any requested edits, and show the final text
 
 If the user declines, do not post anything.
 
-## Phase 7: Clean up
+## Phase 8: Clean up
 
 - If you created a worktree, remove it as described in Option B, step 7.
 - Delete any temporary files you created.
