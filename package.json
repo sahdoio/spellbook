@@ -1,0 +1,11 @@
+{
+  "name": "spellbook",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A spellbook of powerful skills, plugins, and workflows for AI coding agents.",
+  "license": "MIT",
+  "repository": "github:sahdoio/spellbook",
+  "scripts": {
+    "validate": "./scripts/validate.sh"
+  }
+}

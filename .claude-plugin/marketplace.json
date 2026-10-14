@@ -1,0 +1,26 @@
+{
+  "name": "spellbook",
+  "description": "A spellbook of powerful skills, plugins, and workflows for AI coding agents.",
+  "owner": {
+    "name": "Lucas",
+    "url": "https://github.com/sahdoio"
+  },
+  "plugins": [
+    {
+      "name": "spellbook",
+      "source": "./plugins/spellbook",
+      "description": "Lucas's spells for Claude Code, all under the /spellbook: prefix: do-a-code-review, jira-ticket-workflow, and ticket-test-report.",
+      "category": "productivity",
+      "tags": [
+        "code-review",
+        "pull-request",
+        "jira",
+        "qa",
+        "testing",
+        "laravel",
+        "react",
+        "vue"
+      ]
+    }
+  ]
+}

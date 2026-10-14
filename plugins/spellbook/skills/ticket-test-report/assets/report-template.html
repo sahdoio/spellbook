@@ -1,0 +1,199 @@
+<!--
+  TICKET TEST REPORT TEMPLATE
+
+  How to fill it in:
+  - Replace every {{PLACEHOLDER}}. Labels ({{L_*}}) come from the table below, in the chosen language.
+  - Blocks marked "REPEAT" are repeated once per item. Remove every template comment when done.
+  - Escape &, <, > in ticket text, commands, and output. Ticket text stays verbatim (untranslated).
+  - Status class values: passed | failed | blocked | not-tested | not-covered
+  - Self-contained: keep CSS inline, and add no external fonts, scripts, or CDNs.
+
+  LABEL TABLE
+  key                    | en                          | pt
+  -----------------------|-----------------------------|------------------------------------
+  L_TITLE                | Test Execution Report       | Relatório de Execução de Testes
+  L_TICKET               | Ticket                      | Ticket
+  L_ENVIRONMENT          | Environment                 | Ambiente
+  L_WORKSPACE            | Workspace                   | Workspace
+  L_BRANCH               | Branch                      | Branch
+  L_COMMIT               | Commit                      | Commit
+  L_EXECUTED_AT          | Executed at                 | Executado em
+  L_EXECUTED_BY          | Executed by                 | Executado por
+  L_SUMMARY              | Summary                     | Resumo
+  L_VERDICT              | Verdict                     | Veredito
+  L_BLOCKERS             | Blockers                    | Bloqueios
+  L_AC_MATRIX            | Acceptance Criteria         | Critérios de Aceite
+  L_CRITERION            | Criterion                   | Critério
+  L_COVERED_BY           | Covered by                  | Coberto por
+  L_TEST_CASES           | Test Cases                  | Casos de Teste
+  L_PRECONDITIONS        | Preconditions               | Pré-condições
+  L_STEPS                | Steps                       | Passos
+  L_EXPECTED             | Expected result             | Resultado esperado
+  L_ACTUAL               | Actual result               | Resultado obtido
+  L_METHOD               | Method                      | Método
+  L_EVIDENCE             | Evidence                    | Evidências
+  L_DEFECTS              | Defects                     | Defeitos
+  L_LIMITATIONS          | Limitations                 | Limitações
+  L_UNMAPPED             | Test cases not mapped to any criterion | Casos de teste sem critério associado
+  L_NONE                 | None                        | Nenhum
+  Status: Passed         | Passed                      | Aprovado
+  Status: Failed         | Failed                      | Reprovado
+  Status: Blocked        | Blocked                     | Bloqueado
+  Status: Not Tested     | Not Tested                  | Não Testado
+  Status: Not Covered    | Not Covered                 | Não Coberto
+  Method: Browser        | Browser                     | Navegador
+  Method: API / CLI      | API / CLI                   | API / CLI
+  Method: Automated test | Automated test              | Teste automatizado
+  Method: Code review    | Code review                 | Revisão de código
+  Verdict: Approved      | Approved                    | Aprovado
+  Verdict: Rejected      | Rejected                    | Reprovado
+  Verdict: Inconclusive  | Inconclusive                | Inconclusivo
+-->
+<!doctype html>
+<html lang="{{LANG_CODE}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TICKET_ID}} · {{L_TITLE}}</title>
+<style>
+  :root {
+    --bg: #ffffff; --fg: #1f2328; --muted: #59636e; --border: #d1d9e0; --panel: #f6f8fa;
+    --passed: #1a7f37; --failed: #cf222e; --blocked: #9a6700; --not-tested: #59636e; --not-covered: #8250df;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --border: #3d444d; --panel: #151b23;
+      --passed: #3fb950; --failed: #f85149; --blocked: #d29922; --not-tested: #9198a1; --not-covered: #ab7df8;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  main { max-width: 1040px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 26px; margin: 0 0 4px; }
+  h2 { font-size: 19px; margin: 40px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  h3 { font-size: 16px; margin: 0; }
+  code, pre { font: 13px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  pre { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 10px; overflow-x: auto; white-space: pre-wrap; word-break: break-word; }
+  .subtitle { color: var(--muted); margin: 0 0 20px; }
+  .meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px 24px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+  .meta dt { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+  .meta dd { margin: 0 0 4px; word-break: break-word; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin: 12px 0 16px; }
+  .count { border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; }
+  .count b { display: block; font-size: 26px; }
+  .badge { display: inline-block; padding: 1px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; border: 1px solid currentColor; white-space: nowrap; }
+  :is(.badge, .count, .verdict).passed { color: var(--passed); }
+  :is(.badge, .count, .verdict).failed { color: var(--failed); }
+  :is(.badge, .count, .verdict).blocked { color: var(--blocked); }
+  :is(.badge, .count, .verdict).not-tested { color: var(--not-tested); }
+  :is(.badge, .count, .verdict).not-covered { color: var(--not-covered); }
+  .verdict { font-size: 18px; font-weight: 600; }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  th { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  .case { border: 1px solid var(--border); border-left-width: 4px; border-radius: 8px; padding: 14px 16px; margin: 0 0 14px; }
+  .case.passed { border-left-color: var(--passed); } .case.failed { border-left-color: var(--failed); }
+  .case.blocked { border-left-color: var(--blocked); } .case.not-tested { border-left-color: var(--not-tested); }
+  .case-head { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; margin: 10px 0 2px; }
+  .evidence { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+  .evidence figure { margin: 0; }
+  .evidence img { width: 100%; border: 1px solid var(--border); border-radius: 6px; }
+  .evidence figcaption { font-size: 12px; color: var(--muted); }
+  ul { padding-left: 20px; }
+  footer { margin-top: 48px; color: var(--muted); font-size: 12px; }
+  @media print { .case { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>{{L_TITLE}}</h1>
+  <p class="subtitle"><strong>{{TICKET_ID}}</strong>: {{TICKET_SUMMARY}}</p>
+
+  <dl class="meta">
+    <div><dt>{{L_TICKET}}</dt><dd><a href="{{TICKET_URL}}">{{TICKET_ID}}</a></dd></div>
+    <div><dt>{{L_ENVIRONMENT}}</dt><dd>{{ENVIRONMENT}}</dd></div>
+    <div><dt>{{L_WORKSPACE}}</dt><dd>{{WORKSPACE}}</dd></div>
+    <div><dt>{{L_BRANCH}}</dt><dd><code>{{BRANCH}}</code></dd></div>
+    <div><dt>{{L_COMMIT}}</dt><dd><code>{{COMMIT_SHA}}</code></dd></div>
+    <div><dt>{{L_EXECUTED_AT}}</dt><dd>{{EXECUTED_AT}}</dd></div>
+    <div><dt>{{L_EXECUTED_BY}}</dt><dd>{{EXECUTED_BY}}</dd></div>
+  </dl>
+
+  <h2>{{L_SUMMARY}}</h2>
+  <p>{{L_VERDICT}}: <span class="verdict {{VERDICT_CLASS}}">{{VERDICT}}</span></p>
+  <div class="counts">
+    <div class="count passed"><b>{{COUNT_PASSED}}</b>{{LABEL_PASSED}}</div>
+    <div class="count failed"><b>{{COUNT_FAILED}}</b>{{LABEL_FAILED}}</div>
+    <div class="count blocked"><b>{{COUNT_BLOCKED}}</b>{{LABEL_BLOCKED}}</div>
+    <div class="count not-tested"><b>{{COUNT_NOT_TESTED}}</b>{{LABEL_NOT_TESTED}}</div>
+  </div>
+  <p>{{SUMMARY_TEXT}}</p>
+  <h3>{{L_BLOCKERS}}</h3>
+  <ul>
+    <!-- REPEAT per blocker, or a single <li>{{L_NONE}}</li> -->
+    <li><strong>{{CASE_ID}}</strong>: {{BLOCKER_REASON}}. {{UNBLOCK_NEEDED}}</li>
+  </ul>
+
+  <h2>{{L_AC_MATRIX}}</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>#</th><th>{{L_CRITERION}}</th><th>{{L_COVERED_BY}}</th><th>Status</th></tr></thead>
+    <tbody>
+      <!-- REPEAT per acceptance criterion. Criterion text is verbatim from the ticket. -->
+      <tr><td>{{AC_ID}}</td><td>{{AC_TEXT}}</td><td>{{AC_CASE_IDS}}</td><td><span class="badge {{AC_STATUS_CLASS}}">{{AC_STATUS}}</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <!-- Include only when some test cases map to no criterion -->
+  <p><strong>{{L_UNMAPPED}}:</strong> {{UNMAPPED_CASE_IDS}}</p>
+
+  <h2>{{L_TEST_CASES}}</h2>
+  <!-- REPEAT per test case, in ticket order. Title, preconditions, steps, and expected result are verbatim from the ticket. -->
+  <section class="case {{CASE_STATUS_CLASS}}" id="{{CASE_ID}}">
+    <div class="case-head">
+      <h3>{{CASE_ID}} · {{CASE_TITLE}}</h3>
+      <span><span class="badge {{CASE_STATUS_CLASS}}">{{CASE_STATUS}}</span> · {{L_METHOD}}: {{CASE_METHOD}}</span>
+    </div>
+    <p class="label">{{L_PRECONDITIONS}}</p>
+    <div>{{CASE_PRECONDITIONS}}</div>
+    <p class="label">{{L_STEPS}}</p>
+    <ol>
+      <!-- REPEAT per step -->
+      <li>{{STEP_TEXT}}</li>
+    </ol>
+    <p class="label">{{L_EXPECTED}}</p>
+    <div>{{CASE_EXPECTED}}</div>
+    <p class="label">{{L_ACTUAL}}</p>
+    <div>{{CASE_ACTUAL}}</div>
+    <!-- Optional: command, response, test output, or file_path:line_number citation (secrets redacted) -->
+    <pre>{{CASE_OUTPUT}}</pre>
+    <p class="label">{{L_EVIDENCE}}</p>
+    <div class="evidence">
+      <!-- REPEAT per screenshot. src is a relative path to <TICKET-ID>-evidence/ or a data: URI -->
+      <figure><a href="{{IMG_SRC}}"><img src="{{IMG_SRC}}" alt="{{IMG_CAPTION}}"></a><figcaption>{{IMG_CAPTION}}</figcaption></figure>
+    </div>
+  </section>
+
+  <h2>{{L_DEFECTS}}</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>#</th><th>{{L_TEST_CASES}}</th><th>{{L_EXPECTED}}</th><th>{{L_ACTUAL}}</th></tr></thead>
+    <tbody>
+      <!-- REPEAT per failed case, or a single row with {{L_NONE}} -->
+      <tr><td>{{DEFECT_ID}}</td><td><a href="#{{CASE_ID}}">{{CASE_ID}}</a></td><td>{{DEFECT_EXPECTED}}</td><td>{{DEFECT_ACTUAL}}</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>{{L_LIMITATIONS}}</h2>
+  <ul>
+    <!-- REPEAT per limitation: dirty workspace or branch mismatch, unavailable tools, unverifiable steps, Jira access. Use a single <li>{{L_NONE}}</li> if there are none. -->
+    <li>{{LIMITATION}}</li>
+  </ul>
+
+  <footer>{{TICKET_ID}} · {{EXECUTED_AT}} · <code>{{COMMIT_SHA}}</code></footer>
+</main>
+</body>
+</html>

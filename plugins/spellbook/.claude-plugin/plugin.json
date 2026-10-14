@@ -1,0 +1,23 @@
+{
+  "name": "spellbook",
+  "version": "1.0.0",
+  "description": "A spellbook of powerful skills and workflows for AI coding agents: guided PR review, Jira ticket planning with an approval gate, and ticket test-plan execution with HTML reports.",
+  "author": {
+    "name": "Lucas",
+    "url": "https://github.com/sahdoio"
+  },
+  "repository": "https://github.com/sahdoio/spellbook",
+  "license": "MIT",
+  "keywords": [
+    "code-review",
+    "pull-request",
+    "jira",
+    "qa",
+    "testing",
+    "github",
+    "laravel",
+    "react",
+    "vue",
+    "typescript"
+  ]
+}
